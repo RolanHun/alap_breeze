@@ -14,12 +14,7 @@ $(function() {
         sablonModellK.remove();
     }
 
-    /*$(window).on("torol", (event) => {
-        let id = event.detail.id;
-        Ajaxhivas.deleteAdat(apivegpont, id);
-        $(".kerdes").empty();
-        Ajaxhivas.getAdat(apivegpont, kerdesek, kiir);
-    })*/
+
     const Ajaxhivas = new MyAjax();
     const kerdesek = [];
     const szuloModell = $(".tesztek");
@@ -40,7 +35,7 @@ class Kategoria {
     constructor(elem, adat) {
         this.elem = elem;
 
-        this.kategoria = this.elem.children(".kategoriaO");
+        this.kategoria = this.elem.children("#kategoriaO");
 
         this.adat = adat;
 
@@ -57,9 +52,7 @@ class Kategoria {
     }
 
     setAdat(ertekek) {
-        this.kategoria.html(ertekek.kategorianev);
-        this.kategoria.val(ertekek.kategorianev);
-
+        console.log(ertekek);
     }
 }
 
@@ -77,10 +70,13 @@ class Kerdes {
         this.adat = adat;
 
         this.setAdat(this.adat);
-
-        this.elem.on("click", () => {
-            this.tippelKattint1Trigger();
-        });
+        let proba = 0;
+        if (proba < 1) {
+            this.elem.on("click", () => {
+                this.tippelKattint1Trigger();
+            });
+            proba++;
+        }
     }
 
     setAdat(ertekek) {
@@ -94,6 +90,7 @@ class Kerdes {
     tippelKattint1Trigger() {
         let esemeny = new CustomEvent("tippelés1", { detail: this.adat });
         window.dispatchEvent(esemeny);
+
         if (Number(this.adat.helyes) === 1) {
             console.log("Yoo");
         } else {
