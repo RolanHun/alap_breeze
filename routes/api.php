@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\kategoriaController;
+use App\Http\Controllers\tesztController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('tesztek', [tesztController::class, 'tesztek_listaz']);
+Route::get('tesztek/kategoria/{id}', [tesztController::class, 'tesztekKat_listaz']);
+Route::get('kategoria', [kategoriaController::class, 'kategoria_listaz']);
